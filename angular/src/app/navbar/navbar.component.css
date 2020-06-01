@@ -1,0 +1,45 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 225px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+h1{
+  text-align: center;
+}
+.details{
+  text-align: end;
+}
+.problem{
+  width:90%;
+  margin: 5%;
+}
+.mat-form-field{
+  padding-left:20px;
+}
+h4{
+  text-align: center;
+}
+
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.example-radio-button {
+  margin: 5px;
+}

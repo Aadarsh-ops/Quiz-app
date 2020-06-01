@@ -1,0 +1,100 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+      <!-- inside side bar content -->
+    <mat-toolbar style="font-weight: 700;padding-left:65px;">TriVia App</mat-toolbar>
+    <div class="navBar">
+    <h4>Select Category</h4>
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="SelectCategory" name="category" (ngModelChange)="onChoose()">
+        <mat-option *ngFor="let category of categorys" [value]="category.viewValue">{{category.value}}</mat-option>
+      </mat-select>
+    </mat-form-field> 
+
+    <h4>Select Difficulty</h4>
+  <mat-form-field>
+    <mat-label>Difficulty</mat-label>
+    <mat-select [(ngModel)]="SelectDifficulty" name="level" (ngModelChange)="onChoose()">
+      <mat-option *ngFor="let level of levels" [value]="level.value">
+        {{level.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <h4>Select Type</h4>
+  <mat-form-field>
+    <mat-label>Type</mat-label>
+    <mat-select  [(ngModel)]="SelectType" name="type" (ngModelChange)="onChoose()">
+      
+      <mat-option *ngFor="let type of types" [value]="type.value">
+        {{type.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div> 
+  
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>trivia-quiz-app</span>
+    </mat-toolbar>
+    <!-- inside page content 
+    Add Content Here -->
+    
+     <div>
+      <h1>{{Question?.category}}</h1>
+      <div class="problem">
+      <mat-card>
+        <p>
+
+        </p>
+              <p class="details">Difficulty : {{Question?.difficulty}}<p>
+              <p class="details">Type : {{Question?.type}}</p>
+        
+             <h2>Problem</h2>
+          
+             <h3>{{Question?.question}}</h3>
+
+
+
+             <label id="example-radio-group-label">Pick your Answer</label>
+             <mat-radio-group
+               aria-labelledby="example-radio-group-label"
+               class="example-radio-group"
+               [(ngModel)]="yourAnswer">
+               <mat-radio-button class="example-radio-button" *ngFor="let answer of yourOption" [value]="answer">
+                 {{answer}}
+               </mat-radio-button>
+             </mat-radio-group>
+             <div>Your Answer is : {{yourAnswer}}</div>     
+             <p>
+
+             </p>
+             <!-- next button it submit your answer and render your next question from questions array -->
+             <div style="text-align:center;">
+             <button mat-raised-button color="accent" (click)="onSubmit()">Next</button>
+            </div>
+            
+      </mat-card>
+      <p>
+
+      </p>
+      <!-- finsh quiz,this button  show the child component -->
+      <div style="text-align:right;">
+          <button mat-raised-button color="warn" (click)="onFinish()">Finish Quiz</button>
+      </div>
+    </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
